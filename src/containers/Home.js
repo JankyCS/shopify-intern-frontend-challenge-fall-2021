@@ -12,7 +12,7 @@ const Home = () => {
         <div className="row" style={{textAlign:"center",verticalAlign: "middle"}}>
             <div className="col-lg-6" style={{textAlign:"Left",padding:"10vh 1vw 0px 15vw"}}>
                 <h1 style={{fontSize:30,fontWeight:400}}>S H O P P I E S</h1>
-                <Search addNomination={addNomination}/>
+                <Search nominations={nominations} addNomination={addNomination}/>
             </div>
             <div className="col-lg-6">
             {nominations.toString()}
