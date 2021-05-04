@@ -1,9 +1,21 @@
 const SearchResultCard = (props) => {
-    const {nominated,toggle,movie} = props
+    const {nominations,toggle,movie} = props
+    const nominated = nominations.some(e => e.imdbID === movie.imdbID)
+    const completedNominations = nominations.length===5
     const {Title,Year} = movie
 
     const cardBodyStyle = {
         padding: "15px 10px",
+    }
+
+    const buttonStyle = {
+        fontSize:"1.3rem",
+        fontWeight:350,
+        cursor: completedNominations && !nominated? null : "pointer",
+        padding:"0px 5px 0px 15px",
+        userSelect: "none",
+        color: completedNominations && !nominated? "#D3D3D3" : "black",
+        transition:"0.2s"
     }
 
     return (
@@ -13,7 +25,7 @@ const SearchResultCard = (props) => {
                 {Title ? Title+" ":""}
                 <span style={{fontSize:"0.7rem"}}>{Year ? " ("+Year+")":""}</span>
             </div>
-            <div style={{fontSize:"1.3rem",fontWeight:350,cursor:"pointer",padding:"0px 5px 0px 15px",  userSelect: "none"}} onClick={()=>toggle(movie)}>{nominated?"−":"+"}</div>
+            <div style={buttonStyle} onClick={()=>toggle(movie)}>{nominated?"−":"+"}</div>
         </div>
     </div>
     )

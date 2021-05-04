@@ -51,7 +51,7 @@ const Search = (props) => {
         </div>
         {
             !error ?
-            searchResults.map(movie=><SearchResultCard key={movie.imdbID} toggle={toggleNomination} movie={movie} nominated={nominations.some(e => e.imdbID === movie.imdbID)}/>)
+            searchResults.map(movie=><SearchResultCard key={movie.imdbID} toggle={toggleNomination} movie={movie} nominations={nominations}/>)
             :<div className="alert alert-danger" role="alert">
                 Error: {error}
             </div>
