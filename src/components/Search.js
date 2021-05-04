@@ -5,6 +5,7 @@ const Search = (props) => {
     const {nominations,toggleNomination} = props
     const [query, setQuery] = useState('')
     const [searchResults, setSearchResults] = useState([])
+    const [error, setError] = useState("")
 
     const noGlow = {
         boxShadow: "none"
@@ -17,14 +18,18 @@ const Search = (props) => {
     }
 
     const searchMovies = async () =>{
-        const r = await fetch('http://www.omdbapi.com/?s='+query+'&type=movie&apikey='+process.env.REACT_APP_API_KEY)
-        const json = await r.json()
+        if(query!=""){
+            const r = await fetch('http://www.omdbapi.com/?s='+query+'&type=movie&apikey='+process.env.REACT_APP_API_KEY)
+            const json = await r.json()
 
-        if(json.Response === "True"){
-            setSearchResults(json.Search)
-        }
-        else{
-            setSearchResults([])
+            if(json.Response === "True"){
+                setSearchResults(json.Search)
+                setError("")
+            }
+            else{
+                setSearchResults([])
+                setError(json.Error)
+            }
         }
     }
 
@@ -37,7 +42,12 @@ const Search = (props) => {
             </div>
         </div>
         {
+            !error ?
             searchResults.map(movie=><SearchResultCard key={movie.imdbID} toggle={toggleNomination} movie={movie} nominated={nominations.some(e => e.imdbID === movie.imdbID)}/>)
+            :<div className="alert alert-danger" role="alert">
+                Error: {error}
+            </div>
+            
         }
     </div>
     )
