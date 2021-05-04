@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Search from "../components/Search"
+import NominationCard from "../components/NominationCard"
 const Home = () => {
     const [nominations, setNominations] = useState([])
 
@@ -22,8 +23,18 @@ const Home = () => {
                 <h1 style={{fontSize:30,fontWeight:400}}>S H O P P I E S</h1>
                 <Search nominations={nominations} toggleNomination={toggleNomination}/>
             </div>
-            <div className="col-lg-6" style={{textAlign:"Left",padding:"10vh 15vw 5vh 1vw"}}>
-                {nominations.toString()}
+            <div className="col-lg-6" style={{textAlign:"Left",padding:"10vh 5vw 5vh 5vw"}}>
+                <h1 style={{fontSize:20,fontWeight:400}}>Nominations</h1>
+                <div className="card-deck" style={{width:nominations.slice(0,3).length*33+"%"}}>
+                {nominations.slice(0,3).map(movie=><NominationCard key={movie.imdbID} toggle={toggleNomination} movie={movie}/>)}
+                
+                {/* {nominations.toString()} */}
+                </div>
+                <div className="card-deck" style={{width:nominations.slice(3,5).length*33+"%"}}>
+                {nominations.slice(3,5).map(movie=><NominationCard key={movie.imdbID} toggle={toggleNomination} movie={movie}/>)}
+                
+                {/* {nominations.toString()} */}
+                </div>
             </div>
         </div>
     </div>)
