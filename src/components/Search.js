@@ -19,7 +19,7 @@ const Search = (props) => {
 
     const searchMovies = async () =>{
         if(query!=""){
-            const r = await fetch('http://www.omdbapi.com/?s='+query+'&type=movie&apikey=270a44a7')
+            const r = await fetch('https://www.omdbapi.com/?s='+query+'&type=movie&apikey=270a44a7')
             const json = await r.json()
 
             if(json.Response === "True"){
