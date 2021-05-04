@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-// import SearchResults from './SearchResults'
+import SearchResultCard from './SearchResultCard'
 
 const Search = (props) => {
     const [query, setQuery] = useState('')
@@ -13,11 +13,14 @@ const Search = (props) => {
         console.log('http://www.omdbapi.com/?s='+query+'&type=movie&apikey='+process.env.REACT_APP_API_KEY)
         const r = await fetch('http://www.omdbapi.com/?s='+query+'&type=movie&apikey='+process.env.REACT_APP_API_KEY)
         const json = await r.json()
-        // console.log(r.json())
 
-        setSearchResults(json.Search)
-        // .then(response => response.json())
-        // .then(data => console.log(data));
+        console.log(json)
+        if(json.Response === "True"){
+            setSearchResults(json.Search)
+        }
+        else{
+            setSearchResults([])
+        }
     }
 
     return (
@@ -29,7 +32,10 @@ const Search = (props) => {
             </div>
         </div>
         {process.env.REACT_APP_API_KEY}
-        {searchResults.toString()}
+        {/* {searchResults.toString()} */}
+        {
+            searchResults.map(movie=><SearchResultCard key={movie.imdbID} movie={movie}/>)
+        }
         {/* <button type="button" className="btn btn-primary" onClick={()=>props.addNomination(query)}>Primary</button> */}
     </div>
     )
