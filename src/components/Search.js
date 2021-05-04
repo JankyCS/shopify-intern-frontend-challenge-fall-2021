@@ -34,7 +34,7 @@ const Search = (props) => {
         {process.env.REACT_APP_API_KEY}
         {/* {searchResults.toString()} */}
         {
-            searchResults.map(movie=><SearchResultCard key={movie.imdbID} movie={movie}/>)
+            searchResults.map(movie=><SearchResultCard key={movie.imdbID} toggle={props.toggleNomination} movie={movie} nominated={props.nominations.includes(movie)}/>)
         }
         {/* <button type="button" className="btn btn-primary" onClick={()=>props.addNomination(query)}>Primary</button> */}
     </div>
