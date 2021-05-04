@@ -8,6 +8,7 @@ const NominationCard = (props) => {
     const imgStyle = {
         width: "100%",
         height: "100%",
+        minHeight:"13.5rem",
         objectFit: "cover",
         zIndex:0
     }
@@ -21,13 +22,13 @@ const NominationCard = (props) => {
         right: "-0.5rem",
         lineHeight:"1.2rem",
         padding:0,
-        paddingBottom:"0.2rem"
+        paddingBottom:"0.1rem"
     }
-
+    console.log(Poster)
     return (
     <div className="card"  style={{margin:"10px"}}>
-        <img className="card-img-top" src={Poster} alt="Card image cap" style={imgStyle}/>
-        <button className="rounded-circle btn btn-dark" style={btnStyle} onClick={()=>toggle(movie)}>x</button>
+        <img className="card-img-top" src={Poster} alt={movie.Title} style={imgStyle}/>
+        <button className="rounded-circle btn btn-dark" style={btnStyle} onClick={()=>toggle(movie)}>✖</button>
     </div>
     )
 }
