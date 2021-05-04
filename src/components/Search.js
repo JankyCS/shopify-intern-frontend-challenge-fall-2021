@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import SearchResultCard from './SearchResultCard'
 
 const Search = (props) => {
@@ -31,7 +31,15 @@ const Search = (props) => {
                 setError(json.Error)
             }
         }
+        else{
+            setSearchResults([])
+            setError("")
+        }
     }
+
+    useEffect(() => {
+        searchMovies()
+    }, [query]);
 
     return (
     <div style={{marginTop:10}}>
