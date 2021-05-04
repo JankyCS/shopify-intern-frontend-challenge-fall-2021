@@ -17,18 +17,17 @@ const NominationCard = (props) => {
         height:"1.5rem",
         position:"absolute",
         zIndex: 2,
-        // left: "50%",
         top:"-0.5rem",
         right: "-0.5rem",
         lineHeight:"1.2rem",
         padding:0,
-        paddingBottom:10
+        paddingBottom:"0.2rem"
     }
 
     return (
     <div className="card"  style={{margin:"10px"}}>
         <img className="card-img-top" src={Poster} alt="Card image cap" style={imgStyle}/>
-        <button className="rounded-circle btn btn-dark" style={btnStyle}>x</button>
+        <button className="rounded-circle btn btn-dark" style={btnStyle} onClick={()=>toggle(movie)}>x</button>
     </div>
     )
 }

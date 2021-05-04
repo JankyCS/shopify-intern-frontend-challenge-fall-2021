@@ -13,11 +13,29 @@ const Home = () => {
             setNominations(nominations.filter(item => item.imdbID !== movie.imdbID))
         }
         else{
-            setNominations(prev => [...prev, movie])
+            if(nominations.length<5){
+                setNominations(prev => [...prev, movie])
+            }
         }
     }
 
+    const alertStyle = {
+        position:"fixed",
+        width:"50%",
+        right:0,
+        left:0,
+        bottom:0,
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop:20,
+        zIndex:3,
+        textAlign: "center",
+        opacity: nominations.length===5 ? 1:0,
+        transition:"0.2s"
+    }
+
     return (<div className="container-fluid" >
+        {true  && <div className="alert alert-dismissible alert-primary fade show in" role="alert" style={alertStyle}>5 Nominations Selected</div>}
         <div className="row" style={{textAlign:"center",verticalAlign: "middle"}}>
             <div className="col-lg-6" style={{textAlign:"Left",padding:"10vh 1vw 5vh 15vw"}}>
                 <h1 style={{fontSize:30,fontWeight:400}}>S H O P P I E S</h1>
