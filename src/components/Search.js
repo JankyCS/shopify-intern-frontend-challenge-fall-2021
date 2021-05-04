@@ -47,7 +47,6 @@ const Search = (props) => {
             :<div className="alert alert-danger" role="alert">
                 Error: {error}
             </div>
-            
         }
     </div>
     )
