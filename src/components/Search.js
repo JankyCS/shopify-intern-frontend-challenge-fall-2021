@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import SearchResultCard from './SearchResultCard'
 
 const Search = (props) => {
+    const {nominations,toggleNomination} = props
     const [query, setQuery] = useState('')
     const [searchResults, setSearchResults] = useState([])
 
@@ -34,7 +35,7 @@ const Search = (props) => {
         {process.env.REACT_APP_API_KEY}
         {/* {searchResults.toString()} */}
         {
-            searchResults.map(movie=><SearchResultCard key={movie.imdbID} toggle={props.toggleNomination} movie={movie} nominated={props.nominations.includes(movie)}/>)
+            searchResults.map(movie=><SearchResultCard key={movie.imdbID} toggle={toggleNomination} movie={movie} nominated={nominations.some(e => e.imdbID === movie.imdbID)}/>)
         }
         {/* <button type="button" className="btn btn-primary" onClick={()=>props.addNomination(query)}>Primary</button> */}
     </div>
