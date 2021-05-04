@@ -3,8 +3,21 @@ import React, {useState} from 'react'
 
 const Search = (props) => {
     const [query, setQuery] = useState('')
+    const [searchResults, setSearchResults] = useState([])
+
     const noGlow = {
         boxShadow: "none"
+    }
+
+    const searchMovies = async () =>{
+        console.log('http://www.omdbapi.com/?s='+query+'&type=movie&apikey='+process.env.REACT_APP_API_KEY)
+        const r = await fetch('http://www.omdbapi.com/?s='+query+'&type=movie&apikey='+process.env.REACT_APP_API_KEY)
+        const json = await r.json()
+        // console.log(r.json())
+
+        setSearchResults(json.Search)
+        // .then(response => response.json())
+        // .then(data => console.log(data));
     }
 
     return (
@@ -12,9 +25,11 @@ const Search = (props) => {
         <div className="input-group mb-3">
             <input className="form-control" style={noGlow} type="text" placeholder="Search" onChange={e => setQuery(e.target.value)}/>
             <div className="input-group-append">
-                <button className="btn btn-outline-secondary" style={noGlow} type="button">🔎</button>
+                <button className="btn btn-outline-secondary" style={noGlow} type="button" onClick={searchMovies}>🔎</button>
             </div>
         </div>
+        {process.env.REACT_APP_API_KEY}
+        {searchResults.toString()}
         {/* <button type="button" className="btn btn-primary" onClick={()=>props.addNomination(query)}>Primary</button> */}
     </div>
     )
