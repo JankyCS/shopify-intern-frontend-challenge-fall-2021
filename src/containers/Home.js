@@ -36,26 +36,21 @@ const Home = () => {
         transition:"0.2s"
     }
 
-    console.log(nominations)
     return (<div className="container-fluid" >
-        {true  && <div className="alert alert-dismissible alert-primary fade show in" role="alert" style={alertStyle}>5 Nominations Selected</div>}
+        <div className="alert alert-dismissible alert-primary fade show in" role="alert" style={alertStyle}>5 Nominations Selected</div>
         <div className="row" style={{textAlign:"center",verticalAlign: "middle"}}>
-            <div className="col-lg-6" style={{textAlign:"Left",padding:"10vh 1vw 5vh 15vw"}}>
-                <h1 style={{fontSize:30,fontWeight:400}}>S H O P P I E S 🛍️</h1>
+            <div className="col-lg-6" style={{textAlign:"Left",padding:"10vh 8vw 5vh 8vw"}}>
+                <h3>S H O P P I E S 🛍️</h3>
                 <p>Nominate your 5 favourite movies for the SHOPPIES</p>
                 <Search nominations={nominations} toggleNomination={toggleNomination}/>
             </div>
             <div className="col-lg-6" style={{textAlign:"Left",padding:"10vh 5vw 5vh 5vw"}}>
-                <h1 style={{fontSize:20,fontWeight:400}}>Nominations</h1>
+                <h5 style={{fontWeight:400}}>Nominations</h5>
                 <div className="card-deck" style={{width:nominations.slice(0,3).length*33+"%"}}>
-                {nominations.slice(0,3).map(movie=><NominationCard key={movie.imdbID} toggle={toggleNomination} movie={movie}/>)}
-                
-                {/* {nominations.toString()} */}
+                    {nominations.slice(0,3).map(movie=><NominationCard key={movie.imdbID} toggle={toggleNomination} movie={movie}/>)}
                 </div>
                 <div className="card-deck" style={{width:nominations.slice(3,5).length*33+"%"}}>
-                {nominations.slice(3,5).map(movie=><NominationCard key={movie.imdbID} toggle={toggleNomination} movie={movie}/>)}
-                
-                {/* {nominations.toString()} */}
+                    {nominations.slice(3,5).map(movie=><NominationCard key={movie.imdbID} toggle={toggleNomination} movie={movie}/>)}
                 </div>
             </div>
         </div>

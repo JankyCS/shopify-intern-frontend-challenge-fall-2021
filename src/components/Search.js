@@ -17,11 +17,9 @@ const Search = (props) => {
     }
 
     const searchMovies = async () =>{
-        console.log('http://www.omdbapi.com/?s='+query+'&type=movie&apikey='+process.env.REACT_APP_API_KEY)
         const r = await fetch('http://www.omdbapi.com/?s='+query+'&type=movie&apikey='+process.env.REACT_APP_API_KEY)
         const json = await r.json()
 
-        console.log(json)
         if(json.Response === "True"){
             setSearchResults(json.Search)
         }

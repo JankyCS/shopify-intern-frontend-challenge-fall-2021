@@ -24,7 +24,7 @@ const NominationCard = (props) => {
         padding:0,
         paddingBottom:"0.1rem"
     }
-    console.log(Poster)
+    
     return (
     <div className="card"  style={{margin:"10px"}}>
         <img className="card-img-top" src={Poster} alt={movie.Title} style={imgStyle}/>
